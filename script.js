@@ -32,129 +32,136 @@ glow.style.top=e.clientY+'px';
 const hero=document.querySelector('.hero-content');
 
 if(hero){
-
 document.addEventListener('mousemove',e=>{
-
 const x=(window.innerWidth/2-e.clientX)/50;
 const y=(window.innerHeight/2-e.clientY)/50;
-
 hero.style.transform=`translate(${x}px,${y}px)`;
-
 });
-
 }
 
 const navLinks=document.querySelectorAll('nav a[href^="#"]');
 
 navLinks.forEach(link=>{
-
 link.addEventListener('click',e=>{
-
 e.preventDefault();
-
 const target=document.querySelector(link.getAttribute('href'));
 
 if(target){
-
 window.scrollTo({
 top:target.offsetTop-110,
 behavior:'smooth'
 });
-
 }
-
 });
-
 });
 
 window.addEventListener('scroll',()=>{
-
 let current='';
 
 document.querySelectorAll('section[id]').forEach(section=>{
-
 const sectionTop=section.offsetTop-150;
-
 if(window.scrollY>=sectionTop){
 current=section.id;
 }
 });
 
 navLinks.forEach(link=>{
-
 link.style.color='#fff';
-
 if(link.getAttribute('href')==='#'+current){
-link.style.color='#a855f7';
+link.style.color='#a855f6';
 }
-
 });
-
 });
 
 /* =========================
-   LANGUAGE SWITCH (RU / EN)
+   FULL LANGUAGE SYSTEM
 ========================= */
 
-const langBtn = document.getElementById("langBtn");
+const langBtn=document.getElementById("langBtn");
 
-const text = {
-ru: {
-about: "О клубе",
-equipment: "Оборудование",
-rates: "Тарифы",
-games: "Игры",
-media: "Медиа",
-contacts: "Контакты",
-ratesBtn: "Наши тарифы"
+const t={
+ru:{
+about:"О клубе",
+equipment:"Оборудование",
+rates:"Тарифы",
+games:"Игры",
+media:"Медиа",
+contacts:"Контакты",
+ratesBtn:"Наши тарифы",
+
+vip:"ВИП зона",
+standard:"Стандарт",
+iron1:"Железо (общий зал)",
+iron2:"Железо (VIP)",
+
+address:"Адрес",
+phone:"Телефон",
+insta:"Instagram"
 },
-en: {
-about: "About Club",
-equipment: "Equipment",
-rates: "Prices",
-games: "Games",
-media: "Media",
-contacts: "Contacts",
-ratesBtn: "Our Prices"
+
+en:{
+about:"About Club",
+equipment:"Equipment",
+rates:"Prices",
+games:"Games",
+media:"Media",
+contacts:"Contacts",
+ratesBtn:"Our Prices",
+
+vip:"VIP Zone",
+standard:"Standard",
+iron1:"PC Setup (Main Hall)",
+iron2:"PC Setup (VIP)",
+
+address:"Address",
+phone:"Phone",
+insta:"Instagram"
 }
 };
 
-let currentLang = "ru";
+let lang="ru";
 
-if(langBtn){
-
-langBtn.addEventListener("click", ()=>{
-
-currentLang = currentLang === "ru" ? "en" : "ru";
-
-langBtn.textContent = currentLang === "ru" ? "EN" : "RU";
-
-const t = text[currentLang];
-
-/* MENU */
-document.querySelector('a[href="#about"]').textContent = t.about;
-document.querySelector('a[href="#equipment"]').textContent = t.equipment;
-document.querySelector('a[href="#rates"]').textContent = t.rates;
-document.querySelector('a[href="#games"]').textContent = t.games;
-document.querySelector('a[href="#media"]').textContent = t.media;
-document.querySelector('a[href="#contacts"]').textContent = t.contacts;
+function update(){
+document.querySelector('a[href="#about"]').textContent=t[lang].about;
+document.querySelector('a[href="#equipment"]').textContent=t[lang].equipment;
+document.querySelector('a[href="#rates"]').textContent=t[lang].rates;
+document.querySelector('a[href="#games"]').textContent=t[lang].games;
+document.querySelector('a[href="#media"]').textContent=t[lang].media;
+document.querySelector('a[href="#contacts"]').textContent=t[lang].contacts;
 
 /* TITLES */
-const titles = document.querySelectorAll("section h2");
-if(titles.length >= 6){
-titles[0].textContent = t.about;
-titles[1].textContent = t.equipment;
-titles[2].textContent = t.rates;
-titles[3].textContent = t.games;
-titles[4].textContent = t.media;
-titles[5].textContent = t.contacts;
+const h2=document.querySelectorAll("section h2");
+if(h2.length>=6){
+h2[0].textContent=t[lang].about;
+h2[1].textContent=t[lang].equipment;
+h2[2].textContent=t[lang].rates;
+h2[3].textContent=t[lang].games;
+h2[4].textContent=t[lang].media;
+h2[5].textContent=t[lang].contacts;
+}
+
+/* EQUIPMENT CARDS */
+const cards=document.querySelectorAll("#equipment .card h3");
+if(cards.length>=4){
+cards[0].textContent=t[lang].vip;
+cards[1].textContent=t[lang].standard;
+cards[2].textContent=t[lang].iron1;
+cards[3].textContent=t[lang].iron2;
 }
 
 /* HERO BUTTON */
-const heroBtn = document.querySelector(".primary-btn");
+const heroBtn=document.querySelector(".primary-btn");
 if(heroBtn){
-heroBtn.textContent = t.ratesBtn;
+heroBtn.textContent=t[lang].ratesBtn;
+}
 }
 
+if(langBtn){
+langBtn.addEventListener("click",()=>{
+lang=lang==="ru"?"en":"ru";
+langBtn.textContent=lang==="ru"?"EN":"RU";
+update();
 });
 }
+
+update();
