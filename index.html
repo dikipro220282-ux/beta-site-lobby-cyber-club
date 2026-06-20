@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -24,10 +23,18 @@
 
 <ul>
 <li><a href="#about">О клубе</a></li>
+<li><a href="#equipment">Оборудование</a></li>
 <li><a href="#rates">Тарифы</a></li>
 <li><a href="#games">Игры</a></li>
 <li><a href="#media">Медиа</a></li>
 <li><a href="#contacts">Контакты</a></li>
+
+<li>
+<button id="langBtn" style="font-size:12px;padding:6px 10px;">
+EN
+</button>
+</li>
+
 </ul>
 
 </nav>
@@ -112,6 +119,65 @@
 <div class="card">
 <h3>Сообщество</h3>
 <p>Играй с друзьями и находи новых тиммейтов.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- НОВАЯ СЕКЦИЯ -->
+<section id="equipment">
+
+<div class="container">
+
+<h2>Оборудование</h2>
+
+<div class="about-grid">
+
+<div class="card">
+
+<h3>VIP зона</h3>
+<p>Монитор LENOVO LEGION 27 240Hz</p>
+<p>Наушники HyperX Cloud II Wireless</p>
+<p>Мышь Logitech G Pro Wireless</p>
+<p>Коврик Razer Gigantus Large</p>
+<p>Клавиатура HyperX Origins Core</p>
+<p>Кресло DXRacer Gladiator</p>
+
+</div>
+
+<div class="card">
+
+<h3>Стандарт</h3>
+<p>Монитор PHILIPS 27 165Hz</p>
+<p>Наушники Razer BlackShark V2</p>
+<p>Мышь HyperX Pulsefire Surge</p>
+<p>Коврик HyperX Pulsefire Mat Large</p>
+<p>Клавиатура VGN N7S</p>
+<p>Кресло DXRacer Prince</p>
+
+</div>
+
+<div class="card">
+
+<h3>Железо (общий зал)</h3>
+<p>Intel Core i3-12100F</p>
+<p>RTX 4060 MSI</p>
+<p>RAM 16GB 3200</p>
+<p>Motherboard B760 Gigabyte</p>
+
+</div>
+
+<div class="card">
+
+<h3>Железо (VIP)</h3>
+<p>Intel Core i5-12400F</p>
+<p>RTX 4060 MSI</p>
+<p>RAM 16GB 3200</p>
+<p>Motherboard B760 Gigabyte</p>
+
 </div>
 
 </div>
@@ -264,8 +330,17 @@
 <p>© 2026 Lobby Cyber Club. Все права защищены.</p>
 </footer>
 
-<script src="script.js"></script>
+<script>
+document.getElementById("langBtn").addEventListener("click", () => {
+if(document.getElementById("langBtn").innerText === "EN"){
+document.getElementById("langBtn").innerText = "RU";
+document.documentElement.lang = "en";
+} else {
+document.getElementById("langBtn").innerText = "EN";
+document.documentElement.lang = "ru";
+}
+});
+</script>
 
 </body>
 </html>
-```
